@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help & FAQ - LocalConnect 24x7</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles - Modern & Premium */
+        :root {
+            --primary: #4F46E5; /* Indigo 600 */
+            --primary-dark: #4338CA; /* Indigo 700 */
+            --secondary: #F59E0B; /* Amber 500 */
+            --dark: #111827;
+            --light: #F9FAFB;
+            --text-color: #374151;
+            --border-color: #E5E7EB;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header, Logo, and Nav */
+        header {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        header nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        header nav a:hover, header nav a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Main Content */
+        main {
+            flex-grow: 1;
+            padding: 3rem 0;
+        }
+
+        .help-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .help-container h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .help-container p.subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* FAQ Accordion Styles */
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.5rem 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dark);
+        }
+        .faq-question .icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding-bottom 0.4s ease;
+            color: var(--text-color);
+        }
+        .faq-answer p {
+             padding-bottom: 1.5rem;
+        }
+        
+        /* Active state for accordion */
+        .faq-item.active .faq-question .icon {
+            transform: rotate(45deg);
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust as needed for content length */
+        }
+        
+        /* Footer */
+        .site-footer {
+            background-color: var(--dark);
+            color: #D1D5DB;
+            padding: 40px 0;
+            margin-top: auto;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; color: white; }
+        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #4B5563; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo">LocalConnect<span>24x7</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register_customer.html">Register</a></li>
+                        <li><a href="help.html" class="active">Help</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="help-container">
+            <h1>Help & Support</h1>
+            <p class="subtitle">Find answers to common questions about our platform.</p>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How does LocalConnect24x7 work?</span>
+                        <i class="fas fa-plus icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>LocalConnect24x7 is a platform that connects you with your favorite local stores. You can browse products from various shops in your area, add them to your cart, and place an order. We then facilitate a quick and reliable delivery right to your doorstep, 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What are the delivery times and charges?</span>
+                        <i class="fas fa-plus icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We pride ourselves on 24/7 delivery. However, delivery times can vary slightly based on the shop's operational hours and your location. Each shop sets its own delivery fee, which you will see clearly at checkout before making a payment. Our standard fee is typically around ₹30.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I track my order?</span>
+                        <i class="fas fa-plus icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Once you place an order, you can track its status in the "My Orders" section of your customer dashboard. You will receive real-time updates from the moment the shop accepts your order to when it's out for delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is your return and refund policy?</span>
+                        <i class="fas fa-plus icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Return policies are set by the individual shops. Generally, perishable items like groceries and vegetables cannot be returned unless they are of poor quality. For other items, you can initiate a return request from your "My Orders" page within the shop's specified return window. Refunds will be processed once the shop confirms receipt of the returned item.</p>
+                    </div>
+                </div>
+                
+                 <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How can I contact customer support?</span>
+                        <i class="fas fa-plus icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>If you have an issue with your order, the fastest way is to contact the shop directly using the details on the order page. For platform-related issues or other queries, you can reach our customer support team via the "Contact Us" page or email us at support@localconnect24x7.com.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">LocalConnect 24x7</div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 LocalConnect 24x7. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Check if the current item is already active
+                    const isActive = item.classList.contains('active');
+
+                    // Optional: Close all other items
+                    faqItems.forEach(i => i.classList.remove('active'));
+                    
+                    // If it wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

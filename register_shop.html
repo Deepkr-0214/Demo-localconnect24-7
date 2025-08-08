@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Register Your Shop - LocalConnect24x7</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    /* Custom styles to complement Tailwind CSS and maintain consistency */
+    :root {
+        --primary: #4F46E5; /* Indigo 600 */
+        --primary-dark: #4338CA; /* Indigo 700 */
+        --secondary: #F59E0B; /* Amber 500 */
+        --dark: #111827;
+        --light: #F9FAFB;
+        --text-color: #374151;
+        --border-color: #E5E7EB;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light);
+        color: var(--text-color);
+    }
+    .logo {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--dark);
+        text-decoration: none;
+    }
+    .logo span {
+        color: var(--primary);
+    }
+    header nav a.active {
+        color: var(--primary);
+        font-weight: 700;
+    }
+    
+    /* Form Styles */
+    .form-container {
+        background: white;
+        padding: 40px;
+        margin: 40px auto;
+        max-width: 750px; /* Wider for this form */
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-color);
+    }
+    .form-container h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 15px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .form-container p {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+    .form-group input[type="file"] {
+        padding: 10px;
+    }
+    .form-group input[type="checkbox"],
+    .form-group input[type="radio"] {
+        width: auto;
+        height: 1rem;
+        width: 1rem;
+    }
+    .form-group a {
+        color: var(--primary);
+        font-weight: 500;
+        text-decoration: none;
+    }
+    .form-group a:hover {
+        text-decoration: underline;
+    }
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+    .site-footer {
+        background-color: var(--dark);
+        color: #D1D5DB;
+        padding: 40px 0;
+    }
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+    }
+    .copyright {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #4B5563;
+    }
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-8">
+      <a href="index.html" class="logo">LocalConnect<span>24x7</span></a>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6 items-center">
+          <li><a href="index.html" class="font-semibold text-gray-600 hover:text-primary transition">Home</a></li>
+          <li><a href="login.html" class="font-semibold text-gray-600 hover:text-primary transition">Login</a></li>
+          <li><a href="register_customer.html" class="font-semibold text-gray-600 hover:text-primary transition">Register Customer</a></li>
+          <li><a href="register_shop.html" class="active font-semibold transition">Register Shop</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="flex items-center space-x-4">
+       <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-t py-2">
+    <ul class="flex flex-col items-center space-y-2">
+      <li><a href="index.html" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Home</a></li>
+      <li><a href="login.html" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Login</a></li>
+      <li><a href="register_customer.html" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Register Customer</a></li>
+      <li><a href="register_shop.html" class="block w-full text-center py-2 text-primary font-bold bg-gray-100">Register Shop</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="container mx-auto px-4 py-12 flex-grow">
+    <div class="form-container">
+        <h1><i class="fas fa-store mr-3"></i> Register Your Shop</h1>
+        <p>Join our platform to reach more customers 24/7 and grow your business.</p>
+
+        <form id="shop-registration-form">
+            <div class="form-group">
+                <label for="shop-name">Shop Name*</label>
+                <input type="text" id="shop-name" required placeholder="e.g., My Local Grocery">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="owner-name">Owner Name*</label>
+                    <input type="text" id="owner-name" required placeholder="Your Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" required placeholder="+91 98765 43210">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address*</label>
+                <input type="email" id="email" required placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Set a Password*</label>
+                <input type="password" id="password" required placeholder="Minimum 8 characters">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Shop Address*</label>
+                <textarea id="address" rows="3" required placeholder="Full address including street, city, pincode"></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Shop Category*</label>
+                    <select id="category" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="medical">Medical Store</option>
+                        <option value="grocery">Grocery Store</option>
+                        <option value="stationery">Stationery</option>
+                        <option value="vegetables">Vegetables/Fruits</option>
+                        <option value="restaurant">Restaurant/Cafe</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="delivery-fee">Default Delivery Fee (₹)*</label>
+                    <input type="number" id="delivery-fee" min="0" value="30" required placeholder="e.g., 30">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="license">Upload Shop License*</label>
+                <input type="file" id="license" accept=".pdf,.jpg,.png" required>
+                <p class="text-sm text-gray-500 mt-1">Accepted: PDF, JPG, PNG (Max 5MB)</p>
+            </div>
+
+            <div class="form-group">
+                <label for="id-proof">Upload ID Proof (Owner)*</label>
+                <input type="file" id="id-proof" accept=".pdf,.jpg,.png" required>
+                <p class="text-sm text-gray-500 mt-1">Accepted: PDF, JPG, PNG (Max 5MB)</p>
+            </div>
+
+            <div class="form-group flex items-center">
+                <input type="checkbox" id="terms-agree" required class="h-4 w-4">
+                <label for="terms-agree" class="mb-0 ml-2 font-normal text-sm">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>*</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full mt-4"><i class="fas fa-paper-plane mr-2"></i> Submit for Review</button>
+        </form>
+
+        <p class="mt-6 text-center text-sm">
+            Already have a shop account? <a href="login.html" class="font-semibold text-primary hover:underline">Login here</a>
+        </p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container mx-auto px-4">
+        <div class="footer-content">
+            <div class="footer-logo">LocalConnect 24x7</div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LocalConnect 24x7. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const registrationForm = document.getElementById('shop-registration-form');
+
+    // --- Mobile Menu Toggle ---
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // --- Form Submission and Validation ---
+    registrationForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Get form values
+        const shopName = document.getElementById('shop-name').value.trim();
+        const ownerName = document.getElementById('owner-name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const category = document.getElementById('category').value;
+        const licenseFile = document.getElementById('license').files;
+        const idProofFile = document.getElementById('id-proof').files;
+        const terms = document.getElementById('terms-agree').checked;
+
+        // --- Basic Validation ---
+        if (!shopName || !ownerName || !phone || !email || !password || !address || !category) {
+            alert('Please fill out all required text fields.');
+            return;
+        }
+
+        if (password.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            return;
+        }
+
+        if (licenseFile.length === 0) {
+            alert('Please upload your Shop License.');
+            return;
+        }
+
+        if (idProofFile.length === 0) {
+            alert('Please upload your ID Proof.');
+            return;
+        }
+        
+        if (!terms) {
+            alert('You must agree to the Terms & Conditions and Privacy Policy.');
+            return;
+        }
+
+        // If validation passes
+        alert('Thank you! Your shop registration has been submitted for review. You will be notified via email upon approval.');
+        
+        // In a real application, you would send this data to a server using FormData
+        // For now, we'll just redirect to the login page
+        window.location.href = 'login.html';
+    });
+});
+</script>
+
+</body>
+</html>

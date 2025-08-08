@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shop Browse - LocalConnect 24x7</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    /* Custom styles to complement Tailwind CSS and maintain consistency */
+    :root {
+        --primary: #4F46E5; /* Indigo 600 */
+        --primary-dark: #4338CA; /* Indigo 700 */
+        --secondary: #F59E0B; /* Amber 500 */
+        --dark: #111827;
+        --light: #F9FAFB;
+        --text-color: #374151;
+        --danger: #EF4444;
+        --border-color: #E5E7EB;
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light);
+        color: var(--text-color);
+    }
+    .logo {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--dark);
+        text-decoration: none;
+    }
+    .logo span {
+        color: var(--primary);
+    }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+    }
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+    .status {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-weight: 500;
+        font-size: 0.875rem;
+    }
+    .status.open {
+        background-color: #D1FAE5; /* Green 100 */
+        color: #065F46; /* Green 800 */
+    }
+    .status.closed {
+        background-color: #FEE2E2; /* Red 100 */
+        color: #991B1B; /* Red 800 */
+    }
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background-color: var(--danger);
+        color: white;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        border: 2px solid white;
+    }
+     .site-footer {
+        background-color: var(--dark);
+        color: #D1D5DB;
+        padding: 40px 0;
+        margin-top: auto;
+    }
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+    }
+    .copyright {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #4B5563;
+    }
+</style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-8">
+      <a href="index.html" class="logo">LocalConnect<span>24x7</span></a>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6 items-center">
+          <li><a href="index.html" class="font-semibold text-gray-600 hover:text-primary transition">Home</a></li>
+          <li><a href="customer_dashboard.html" class="font-semibold text-primary transition">Browse Shops</a></li>
+          <li><a href="cart.html" class="font-semibold text-gray-600 hover:text-primary transition">My Cart</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="flex items-center space-x-4">
+       <a href="cart.html" class="relative">
+          <i class="fas fa-shopping-cart text-2xl text-gray-600 hover:text-primary"></i>
+          <span id="cartCount" class="cart-count">0</span>
+       </a>
+      <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-t py-2">
+    <ul class="flex flex-col items-center space-y-2">
+      <li><a href="index.html" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Home</a></li>
+      <li><a href="customer_dashboard.html" class="block w-full text-center py-2 text-primary font-bold bg-gray-100">Browse Shops</a></li>
+      <li><a href="cart.html" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">My Cart</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="container mx-auto px-4 py-12 flex-grow">
+    <h1 class="text-3xl md:text-4xl font-bold text-dark mb-8 text-center">Browse Local Shops</h1>
+    <div id="shopsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container mx-auto px-4">
+        <div class="footer-content">
+            <div class="footer-logo">LocalConnect 24x7</div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 LocalConnect 24x7. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Sample Data for Shops ---
+    const shops = [
+        {
+            name: "24/7 Medical Store",
+            category: "Medical",
+            address: "123 Pharmacy Rd, City",
+            status: "Open",
+            rating: 4.8,
+            reviews: 120
+        },
+        {
+            name: "Fresh Veggies & Fruits",
+            category: "Vegetables/Fruits",
+            address: "456 Green St, Town",
+            status: "Open",
+            rating: 4.5,
+            reviews: 85
+        },
+        {
+            name: "Daily Needs Grocery",
+            category: "Grocery",
+            address: "789 Market Ln, Village",
+            status: "Closed",
+            rating: 4.2,
+            reviews: 210
+        },
+        {
+            name: "The Book Nook",
+            category: "Stationery",
+            address: "101 Reading St, Town",
+            status: "Open",
+            rating: 4.9,
+            reviews: 50
+        },
+        {
+            name: "General Kirana Store",
+            category: "Grocery",
+            address: "22B Baker Street",
+            status: "Open",
+            rating: 4.3,
+            reviews: 150
+        },
+         {
+            name: "Wellness Forever",
+            category: "Medical",
+            address: "Main Circle, Downtown",
+            status: "Closed",
+            rating: 4.6,
+            reviews: 300
+        }
+    ];
+
+    const shopsGrid = document.getElementById('shopsGrid');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const cartCountEl = document.getElementById('cartCount');
+    
+    // --- Function to Render Shop Cards ---
+    function renderShops() {
+        shopsGrid.innerHTML = ''; // Clear existing static content
+        
+        shops.forEach(shop => {
+            const isClosed = shop.status === 'Closed';
+            const card = document.createElement('div');
+            card.className = 'card p-6 flex flex-col';
+            card.innerHTML = `
+                <h3 class="text-2xl font-semibold mb-3 text-dark">${shop.name}</h3>
+                <p class="text-gray-600 mb-2"><i class="fas fa-tag mr-2 text-primary"></i> Category: ${shop.category}</p>
+                <p class="text-gray-600 mb-4"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Address: ${shop.address}</p>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="status ${isClosed ? 'closed' : 'open'}">
+                        <i class="fas fa-circle mr-2"></i> ${shop.status} Now
+                    </span>
+                    <span class="text-gray-600"><i class="fas fa-star text-yellow-500 mr-1"></i> ${shop.rating} (${shop.reviews} reviews)</span>
+                </div>
+                <button 
+                    class="btn btn-primary mt-auto w-full ${isClosed ? 'opacity-50 cursor-not-allowed' : ''}" 
+                    ${isClosed ? 'disabled' : ''}
+                    onclick="location.href='index.html'"
+                >
+                    <i class="fas fa-store mr-2"></i> View Shop & Products
+                </button>
+            `;
+            shopsGrid.appendChild(card);
+        });
+    }
+    
+    // --- Function to update Cart Count from localStorage ---
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        cartCountEl.textContent = totalItems;
+    }
+
+    // --- Event Listener for Mobile Menu ---
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- Initial Calls ---
+    renderShops();
+    updateCartCount();
+});
+</script>
+
+</body>
+</html>

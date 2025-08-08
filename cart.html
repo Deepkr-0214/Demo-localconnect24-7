@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - LocalConnect24x7</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles - Modern & Premium */
+        :root {
+            --primary: #4F46E5; /* Indigo 600 */
+            --primary-dark: #4338CA; /* Indigo 700 */
+            --secondary: #F59E0B; /* Amber 500 */
+            --dark: #111827;
+            --light: #F9FAFB;
+            --text-color: #374151;
+            --success: #10B981;
+            --danger: #EF4444;
+            --border-color: #E5E7EB;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Roboto', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        header nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        header nav a:hover, header nav a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            flex-grow: 1;
+        }
+        
+        /* Cart Page Specific Styles */
+        .cart-page {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .cart-items {
+             background: white;
+             border-radius: 12px;
+             box-shadow: var(--shadow-md);
+             padding: 25px;
+             border: 1px solid var(--border-color);
+        }
+
+        .cart-summary {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 110px; /* Adjust based on header height */
+        }
+        .cart-summary h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .summary-row.total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        .btn-continue {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .btn-continue:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Table Styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 15px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .table th {
+            font-weight: 600;
+            color: var(--dark);
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .table .product-info {
+             display: flex;
+             align-items: center;
+             gap: 1rem;
+        }
+        .table .product-info img {
+             width: 60px;
+             height: 60px;
+             object-fit: cover;
+             border-radius: 8px;
+        }
+        .table .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .table .qty-controls button, .table .remove-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            transition: color 0.2s;
+        }
+        .table .qty-controls button:hover {
+            color: var(--primary);
+        }
+        .table .remove-btn {
+             color: var(--danger);
+        }
+        .table .remove-btn:hover {
+             opacity: 0.75;
+        }
+        
+        /* Footer */
+        .site-footer {
+            background-color: var(--dark);
+            color: #D1D5DB; /* Gray 300 */
+            padding: 40px 0;
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; color: white; }
+        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #4B5563; }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="header-left">
+                <a href="index.html" class="logo">LocalConnect<span>24x7</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="cart.html" class="active">Cart</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-right">
+                 <a href="login.html" class="font-semibold">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <div class="container">
+            <h1 class="text-3xl md:text-4xl font-bold text-dark mb-8 text-center">Your Shopping Cart</h1>
+
+            <div class="cart-container">
+                <div class="cart-items">
+                    <table id="cart-items-table" class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery Charge</span>
+                            <span id="delivery-charge">₹0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="cart-total">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <a href="#" id="checkout-btn" class="btn btn-primary btn-checkout">
+                        Proceed to Checkout <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                    </a>
+                    <a href="index.html" class="btn-continue">
+                        <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">LocalConnect 24x7</div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 LocalConnect 24x7. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartTableBody = document.querySelector("#cart-items-table tbody");
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const deliveryChargeEl = document.getElementById('delivery-charge');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            const DELIVERY_CHARGE = 30.00;
+            let cart = [];
+
+            function loadCart() {
+                cart = JSON.parse(localStorage.getItem("cart")) || [];
+                renderCart();
+            }
+
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+            }
+            
+            function renderCart() {
+                cartTableBody.innerHTML = '';
+                let subtotal = 0;
+
+                if (cart.length === 0) {
+                    cartTableBody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 40px; font-size: 1.1rem;">Your cart is empty.</td></tr>`;
+                    deliveryChargeEl.textContent = `₹0.00`;
+                    checkoutBtn.style.opacity = '0.5';
+                    checkoutBtn.style.pointerEvents = 'none';
+                } else {
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.qty;
+                        subtotal += itemTotal;
+
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>
+                                <div class="product-info">
+                                    <img src="${item.image}" alt="${item.name}">
+                                    <span>${item.name}</span>
+                                </div>
+                            </td>
+                            <td>₹${item.price.toFixed(2)}</td>
+                            <td>
+                                <div class="qty-controls">
+                                    <button class="qty-change" data-id="${item.id}" data-delta="-1"><i class="fas fa-minus-circle"></i></button>
+                                    <span>${item.qty}</span>
+                                    <button class="qty-change" data-id="${item.id}" data-delta="1"><i class="fas fa-plus-circle"></i></button>
+                                </div>
+                            </td>
+                            <td>₹${itemTotal.toFixed(2)}</td>
+                            <td>
+                                <button class="remove-btn" data-id="${item.id}" title="Remove item"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        `;
+                        cartTableBody.appendChild(tr);
+                    });
+                    deliveryChargeEl.textContent = `₹${DELIVERY_CHARGE.toFixed(2)}`;
+                    checkoutBtn.style.opacity = '1';
+                    checkoutBtn.style.pointerEvents = 'auto';
+                }
+
+                subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
+                const total = cart.length > 0 ? subtotal + DELIVERY_CHARGE : 0;
+                totalEl.textContent = `₹${total.toFixed(2)}`;
+            }
+
+            cartTableBody.addEventListener('click', e => {
+                const target = e.target.closest('button');
+                if (!target) return;
+
+                const id = parseInt(target.dataset.id);
+
+                if (target.classList.contains('qty-change')) {
+                    const delta = parseInt(target.dataset.delta);
+                    const item = cart.find(i => i.id === id);
+                    if (item) {
+                        item.qty += delta;
+                        if (item.qty <= 0) {
+                            cart = cart.filter(i => i.id !== id);
+                        }
+                    }
+                } else if (target.classList.contains('remove-btn')) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                
+                saveCart();
+            });
+            
+            checkoutBtn.addEventListener('click', (e) => {
+                if(cart.length === 0){
+                    e.preventDefault();
+                    alert("Your cart is empty. Please add items before checking out.");
+                } else {
+                    alert("Proceeding to checkout!");
+                    // Here you would redirect to a real checkout page
+                    // window.location.href = "checkout.html";
+                }
+            });
+
+            // Initial load
+            loadCart();
+        });
+    </script>
+</body>
+</html>
