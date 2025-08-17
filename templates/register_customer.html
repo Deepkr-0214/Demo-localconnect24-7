@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Register Customer - LocalConnect 24x7</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    :root {
+        --primary: #4F46E5;
+        --primary-dark: #4338CA;
+        --secondary: #F59E0B;
+        --dark: #111827;
+        --light: #F9FAFB;
+        --text-color: #374151;
+        --border-color: #E5E7EB;
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--light);
+        color: var(--text-color);
+    }
+    .logo {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--dark);
+        text-decoration: none;
+    }
+    .logo span {
+        color: var(--primary);
+    }
+    .form-container {
+        background: white;
+        padding: 40px;
+        margin: 40px auto;
+        max-width: 650px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-color);
+    }
+    .form-container h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 15px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .form-container p {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+    }
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
+    .error-message {
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+    .success-message {
+        color: #10b981;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+</style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-8">
+      <a href="{% url 'home' %}" class="logo">LocalConnect<span>24x7</span></a>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-6 items-center">
+          <li><a href="{% url 'home' %}" class="font-semibold text-gray-600 hover:text-primary transition">Home</a></li>
+          <li><a href="{% url 'login' %}" class="font-semibold text-gray-600 hover:text-primary transition">Login</a></li>
+          <li><a href="{% url 'register_customer' %}" class="active font-semibold transition">Register Customer</a></li>
+          <li><a href="{% url 'register_shop' %}" class="font-semibold text-gray-600 hover:text-primary transition">Register Shop</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="flex items-center space-x-4">
+       <a href="#" class="relative">
+          <i class="fas fa-shopping-cart text-2xl text-gray-600 hover:text-primary"></i>
+       </a>
+      <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="hidden md:hidden bg-white border-t py-2">
+    <ul class="flex flex-col items-center space-y-2">
+      <li><a href="{% url 'home' %}" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Home</a></li>
+      <li><a href="{% url 'login' %}" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Login</a></li>
+      <li><a href="{% url 'register_customer' %}" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Register Customer</a></li>
+      <li><a href="{% url 'register_shop' %}" class="block w-full text-center py-2 text-gray-700 hover:bg-gray-100">Register Shop</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="flex-grow container mx-auto px-4 py-8">
+    <div class="form-container">
+        <h1>Register as a Customer</h1>
+        <p>Create your account to start shopping with LocalConnect 24x7.</p>
+        <form id="customer-registration-form" method="post" action="{% url 'register_customer' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="customer-name">Your Name*</label>
+                <input type="text" id="customer-name" name="full_name" required placeholder="Enter Your Full Name" value="{{ request.POST.full_name }}">
+            </div>
+
+            <div class="form-group">
+                <label for="customer-phone">Phone Number*</label>
+                <input type="tel" id="customer-phone" name="phone_number" required placeholder="+91 98765 43210" value="{{ request.POST.phone_number }}">
+            </div>
+
+            <div class="form-group">
+                <label for="customer-email">Email Address*</label>
+                <input type="email" id="customer-email" name="email" required placeholder="your.email@example.com" value="{{ request.POST.email }}">
+            </div>
+
+            <div class="form-group">
+                <label for="customer-password">Password*</label>
+                <input type="password" id="customer-password" name="password" required placeholder="Minimum 8 characters">
+            </div>
+
+            <div class="form-group">
+                <label for="customer-address">Delivery Address*</label>
+                <textarea id="customer-address" name="delivery_address" rows="3" required placeholder="Full address including street, city, pincode">{{ request.POST.delivery_address }}</textarea>
+            </div>
+
+            <div class="form-group flex items-center">
+                <input type="checkbox" id="terms-agree" required class="h-4 w-4">
+                <label for="terms-agree" class="mb-0 ml-2 font-normal text-sm">I agree to the <a href="#" class="font-semibold">Terms & Conditions</a> and <a href="#" class="font-semibold">Privacy Policy</a>*</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full mt-4"><i class="fas fa-user-plus mr-2"></i> Register Account</button>
+        </form>
+        <p class="mt-6 text-center text-sm">
+            Already have an account? <a href="{% url 'login' %}" class="font-semibold text-primary hover:underline">Login here</a>
+        </p>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    // Mobile Menu Toggle
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+});
+</script>
+
+</body>
+</html>

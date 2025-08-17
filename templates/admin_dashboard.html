@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard | LocalConnect24x7</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Using a mix of Tailwind CSS for layout and custom CSS for components */
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #F59E0B;
+            --success: #10B981;
+            --success-dark: #059669;
+            --dark-text: #111827;
+            --light-text: #374151;
+            --border-color: #E5E7EB;
+        }
+        
+        body { font-family: 'Inter', sans-serif; }
+
+        .custom-card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .custom-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .btn-approve {
+            background-color: var(--success);
+            color: white;
+        }
+        .btn-approve:hover {
+            background-color: var(--success-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-view {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-view:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-logout {
+             background-color: #DC2626; /* Red 600 */
+             color: white;
+        }
+        .btn-logout:hover {
+             background-color: #B91C1C; /* Red 700 */
+        }
+        
+        /* Header Styles */
+        .site-header {
+            background-color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: var(--dark-text);
+            color: #D1D5DB; /* Gray 300 */
+            padding: 2.5rem 0;
+            margin-top: 2.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="site-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="/" class="logo">LocalConnect<span>24x7</span></a>
+                <nav class="flex items-center space-x-6">
+                    <a href="admin_dashboard.html" class="text-lg font-semibold text-indigo-600">
+                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                    </a>
+                    <button id="logoutBtn" class="btn btn-logout">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">Admin Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="custom-card">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-hourglass-half mr-3 text-yellow-500"></i> Shop Approval Queue
+                </h2>
+                <div id="pending-shops-list" class="space-y-4 mt-3">
+                    </div>
+                <button class="btn btn-view w-full mt-6"><i class="fas fa-list-alt mr-2"></i> View All Pending</button>
+            </div>
+
+            <div class="custom-card">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-chart-line mr-3 text-blue-500"></i> Platform Statistics
+                </h2>
+                <div class="space-y-3 mt-2 text-lg">
+                    <p>Total Orders (Month): <span class="font-bold text-blue-600">134</span></p>
+                    <p>Total Revenue (Month): <span class="font-bold text-green-600">₹45,600</span></p>
+                    <p>New Customers (Month): <span class="font-bold text-yellow-600">25</span></p>
+                    <p>Approved Shops: <span class="font-bold text-purple-600">87</span></p>
+                </div>
+                <button class="btn btn-view w-full mt-6"><i class="fas fa-chart-bar mr-2"></i> View Detailed Reports</button>
+            </div>
+        </div>
+
+        <div class="custom-card">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                <i class="fas fa-users-cog mr-3 text-indigo-500"></i> Admin Actions
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <button class="btn btn-view py-3"><i class="fas fa-user-plus mr-2"></i> Manage Users</button>
+                <button class="btn btn-view py-3"><i class="fas fa-store mr-2"></i> Manage Shops</button>
+                <button class="btn btn-view py-3"><i class="fas fa-box-open mr-2"></i> Manage Products</button>
+                <button class="btn btn-view py-3"><i class="fas fa-cogs mr-2"></i> System Settings</button>
+                <button class="btn btn-view py-3"><i class="fas fa-envelope mr-2"></i> Send Notifications</button>
+                <button class="btn btn-view py-3"><i class="fas fa-headset mr-2"></i> Support Tickets</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+             &copy; 2025 LocalConnect 24x7. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Sample Data for Pending Shops ---
+            const pendingShops = [
+                { id: 1, name: "FreshFruit Veggies" },
+                { id: 2, name: "City Pharmacy" },
+                { id: 3, name: "Stationery Hub" }
+            ];
+
+            const pendingShopsList = document.getElementById('pending-shops-list');
+
+            // --- Function to Render Pending Shops ---
+            function renderPendingShops() {
+                pendingShopsList.innerHTML = ''; // Clear the list first
+                if (pendingShops.length === 0) {
+                     pendingShopsList.innerHTML = '<p class="text-gray-500">No pending shop approvals.</p>';
+                     return;
+                }
+                
+                pendingShops.forEach(shop => {
+                    const shopDiv = document.createElement('div');
+                    shopDiv.className = 'flex justify-between items-center border-b pb-3 last:border-b-0';
+                    shopDiv.innerHTML = `
+                        <span class="text-lg font-medium text-gray-800">${shop.name}</span>
+                        <button class="btn btn-approve" data-shop-id="${shop.id}">
+                            <i class="fas fa-check-circle mr-2"></i>Approve
+                        </button>
+                    `;
+                    pendingShopsList.appendChild(shopDiv);
+                });
+            }
+
+            // --- Event Listeners ---
+            
+            // Event delegation for approve buttons
+            pendingShopsList.addEventListener('click', function(e) {
+                if (e.target && e.target.matches('button.btn-approve')) {
+                    const shopId = e.target.getAttribute('data-shop-id');
+                    const shopName = e.target.previousElementSibling.textContent;
+                    
+                    alert(`Approving '${shopName}' (ID: ${shopId})...`);
+                    
+                    // In a real app, you would make an API call here.
+                    // For this demo, we'll just remove it from the list.
+                    const shopIndex = pendingShops.findIndex(shop => shop.id == shopId);
+                    if (shopIndex > -1) {
+                        pendingShops.splice(shopIndex, 1);
+                        renderPendingShops(); // Re-render the list
+                    }
+                }
+            });
+            
+            // General button alerts for demonstration
+            document.querySelectorAll('.btn-view').forEach(button => {
+                button.addEventListener('click', () => {
+                    alert(`Navigating to: ${button.textContent.trim()}`);
+                });
+            });
+
+            // Logout button
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                alert('Logging out...');
+                window.location.href = '/accounts/login/'; // Redirect to login page
+            });
+
+            // --- Initial Call ---
+            renderPendingShops();
+        });
+    </script>
+</body>
+</html>
